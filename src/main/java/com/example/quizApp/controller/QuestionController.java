@@ -22,7 +22,7 @@ public class QuestionController {
     }
 
     @GetMapping("/question/{category}")
-    public  ResponseEntity<List<Question>> getQuestionsByCategory(@RequestParam String category){
+    public  ResponseEntity<List<Question>> getQuestionsByCategory(@PathVariable String category){
         return questionService.getQuestionsByCategory(category);
     }
 
@@ -34,13 +34,11 @@ public class QuestionController {
     }
 
     @PostMapping("/question/addMultipleQuestion")
-    public  ResponseEntity<String> addMultipleQuestion(@RequestBody List<Question> question){
-        return  questionService.addMultipleQuestion(question);
+    public  ResponseEntity<String> addMultipleQuestion(@RequestBody List<Question> questions){
+        System.out.println("before");
+        questions.forEach(Question::toString);
+        System.out.println("after");
+        return  questionService.addMultipleQuestion(questions);
 
-    }
-
-    @DeleteMapping("/question/deleteQuestion/{id}")
-    public  ResponseEntity<String> deleteQuestion(@RequestParam int id){
-        return  questionService.deleteQuestion(id);
     }
 }

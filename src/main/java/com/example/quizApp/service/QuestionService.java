@@ -59,9 +59,7 @@ public class QuestionService {
 
     public ResponseEntity<String> addMultipleQuestion(List<Question> question) {
         try {
-            for (int i = 0; i < question.size() ; i++) {
-                addQuestion(question.get(i));
-            }
+            question.forEach(this::addQuestion);
             return new ResponseEntity<>("Question added Sucessfully",HttpStatus.OK);
         } catch (Exception e) {
             System.out.println("exception is " + e);
